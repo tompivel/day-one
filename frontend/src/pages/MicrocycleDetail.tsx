@@ -42,7 +42,7 @@ const MicrocycleDetail: React.FC = () => {
         try {
             await createSession(parseInt(microcycleId), {
                 sport,
-                date_start: new Date(dateStart).toISOString(),
+                date_start: dateStart,
                 duration_minutes: duration,
                 perceived_exertion: rpe,
                 description
@@ -123,7 +123,7 @@ const MicrocycleDetail: React.FC = () => {
                         margin="dense"
                         id="date"
                         label="Date"
-                        type="datetime-local"
+                        type="date"
                         fullWidth
                         variant="outlined"
                         InputLabelProps={{ shrink: true }}

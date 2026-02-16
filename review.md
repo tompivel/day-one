@@ -1,10 +1,8 @@
 ## Manual review
 
-Alright, now registration works. Please push these changes to the repo. 
-
-Also, the creation of a new plan doesn't work. For example, this request returns a 404 Not Found:
+Plan, macrocycle and microcycle creation works. Clicking on each of these on the dashboard correctly directs you through the chain (Plan -> Macrocycle -> Microcycle -> Session). However, Session creation doesn't work. It particulary seems a problem with date formatting. The request sent on curl format was:
 ```
-curl 'http://localhost:8000/plans/4/' \
+curl 'http://localhost:8000/sessions/1/' \
   -X POST \
   -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0' \
   -H 'Accept: application/json, text/plain, */*' \
@@ -20,6 +18,11 @@ curl 'http://localhost:8000/plans/4/' \
   -H 'Sec-Fetch-Mode: cors' \
   -H 'Sec-Fetch-Site: same-site' \
   -H 'Priority: u=0' \
-  --data-raw '{"title":"kaskfjaskfj","description":"asfjkasjfkaj"}'
+  --data-raw $'{"sport":"Running","date_start":"2026-02-11T03:00:00.000Z","duration_minutes":50,"perceived_exertion":3,"description":"Easy 50\' session for the day\041"}'```
+
+The answer was a 422, with detail:
 ```
-The response detail is: {"detail":"Not Found"}. Fix this issue.
+{"detail":[{"type":"date_from_datetime_inexact","loc":["body","date_start"],"msg":"Datetimes provided to dates should have zero time - e.g. be exact dates","input":"2026-02-11T03:00:00.000Z"}]}
+```
+
+Please fix this issue.
