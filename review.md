@@ -1,9 +1,25 @@
 ## Manual review
 
-The authentication works! I can register and it automatically logs in after a successful register. Then, the JWT token is saved on local storage sucessfully. However, an already logged in user can access to the login page and register page. This is a security issue. Fix this issue.
+Alright, now registration works. Please push these changes to the repo. 
 
-Also, I've noticed there are several constants like "localhost:8000" or "localhost:5173" hardcoded across the codebase. This is not a good practice. I suggest creating a .env file to store these constants and using a library like python-dotenv to load them if pertinent. Also, move the secret key for JWT tokens to a .env file.
-
-Additionally, create a .gitignore file on the root directory to ignore the .env file, the .venv directory, the __pycache__ directory, the node modules directory and all other temporary or restricted files like the database.
-
-Finally, git-add and git-commit the project in an orderly way. The repo is: "git@github.com:tompivel/day-one.git". Push the changes to the repository.
+Also, the creation of a new plan doesn't work. For example, this request returns a 404 Not Found:
+```
+curl 'http://localhost:8000/plans/4/' \
+  -X POST \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Accept-Encoding: gzip, deflate, br, zstd' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b21waXZlbCIsImV4cCI6MTc3MTI3MzM5MH0.IdI8wMS4Vy6LwSfoN_0YAwZOyhjMTZoUGT52z4cdzPI' \
+  -H 'Origin: http://localhost:5173' \
+  -H 'Sec-GPC: 1' \
+  -H 'Connection: keep-alive' \
+  -H 'Referer: http://localhost:5173/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'Priority: u=0' \
+  --data-raw '{"title":"kaskfjaskfj","description":"asfjkasjfkaj"}'
+```
+The response detail is: {"detail":"Not Found"}. Fix this issue.

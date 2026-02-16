@@ -1,7 +1,7 @@
 import requests
 import sys
 
-BASE_URL = "http://localhost:8002"
+BASE_URL = "http://localhost:8000"
 
 def register(username, password):
     url = f"{BASE_URL}/profiles/"
