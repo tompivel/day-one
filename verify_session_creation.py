@@ -49,7 +49,7 @@ def test_create_session():
         "description": "Test Session",
         "sport": "Running",
         "duration_minutes": 30,
-        "date_start": "2026-02-17", # Plain date string
+        "date_start": "2026-02-17T14:30:00.000Z", # ISO datetime string
         "perceived_exertion": 5
     }
     

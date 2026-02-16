@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -53,7 +53,7 @@ class Session(Base):
     description = Column(String, index=True)
     sport = Column(String)
     duration_minutes = Column(Integer)
-    date_start = Column(Date)
+    date_start = Column(DateTime)
     perceived_exertion = Column(Integer) # 1-10
     microcycle_id = Column(Integer, ForeignKey("microcycles.id"))
 

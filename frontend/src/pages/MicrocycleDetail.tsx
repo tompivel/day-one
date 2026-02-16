@@ -42,7 +42,7 @@ const MicrocycleDetail: React.FC = () => {
         try {
             await createSession(parseInt(microcycleId), {
                 sport,
-                date_start: dateStart,
+                date_start: new Date(dateStart).toISOString(),
                 duration_minutes: duration,
                 perceived_exertion: rpe,
                 description
@@ -77,7 +77,7 @@ const MicrocycleDetail: React.FC = () => {
                     <React.Fragment key={session.id}>
                         <ListItem alignItems="flex-start">
                             <ListItemText
-                                primary={`${session.sport} - ${new Date(session.date_start).toLocaleDateString()}`}
+                                primary={`${session.sport} - ${new Date(session.date_start).toLocaleString()}`}
                                 secondary={
                                     <React.Fragment>
                                         <Typography
@@ -122,8 +122,8 @@ const MicrocycleDetail: React.FC = () => {
                     <TextField
                         margin="dense"
                         id="date"
-                        label="Date"
-                        type="date"
+                        label="Date & Time"
+                        type="datetime-local"
                         fullWidth
                         variant="outlined"
                         InputLabelProps={{ shrink: true }}

@@ -1,13 +1,13 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from datetime import date
+from datetime import date, datetime
 
 # Session Schemas
 class SessionBase(BaseModel):
     description: str
     sport: str
     duration_minutes: int
-    date_start: date
+    date_start: datetime
     perceived_exertion: int
 
 class SessionCreate(SessionBase):
