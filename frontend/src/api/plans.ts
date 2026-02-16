@@ -12,7 +12,7 @@ export const getPlans = async (): Promise<Plan[]> => {
     return response.data;
 };
 
-export const createPlan = async (userId: number, title: string, description?: string): Promise<Plan> => {
-    const response = await api.post(`/plans/${userId}/`, { title, description });
+export const createPlan = async (title: string, description?: string): Promise<Plan> => {
+    const response = await api.post('/plans/', { title, description });
     return response.data;
 };

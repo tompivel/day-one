@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
     const handleCreatePlan = async () => {
         if (!user || !newPlanTitle) return;
         try {
-            await createPlan(user.id, newPlanTitle, newPlanDescription);
+            await createPlan(newPlanTitle, newPlanDescription);
             setIsCreating(false);
             setNewPlanTitle('');
             setNewPlanDescription('');
